@@ -1,4 +1,4 @@
-# test_application
+# ekyc-cryptic
 
 A new Flutter project.
 
