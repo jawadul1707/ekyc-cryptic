@@ -5,13 +5,26 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
 class InvalidPage extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+        // Show a message when trying to navigate back
+        final snackBar = SnackBar(
+          content:
+              const Text('Please complete the registration process first.'),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {},
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        return false; // Prevent back navigation
+      },
+      child: Scaffold(
         appBar: AppBar(
-          //backgroundColor: Colors.lightBlue[100],
           elevation: 0,
+          automaticallyImplyLeading: false, // Remove the back button
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -25,7 +38,7 @@ class InvalidPage extends StatelessWidget {
                     const Icon(
                       Icons.highlight_off,
                       size: 100,
-                      color: Colors.blue,
+                      color: Colors.red,
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -60,7 +73,6 @@ class InvalidPage extends StatelessWidget {
               SizedBox(
                 width: 360,
                 height: 40,
-                //padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: ElevatedButton(
                   onPressed: () async {
                     // Add your onPressed code here!
@@ -91,6 +103,8 @@ class InvalidPage extends StatelessWidget {
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

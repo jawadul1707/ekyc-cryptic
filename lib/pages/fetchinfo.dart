@@ -1,10 +1,7 @@
-//import 'package:crypt/pages/fetchdetails.dart';
 import 'package:crypt/pages/global_variable.dart';
 import 'package:crypt/pages/user_details.dart';
-//import 'package:crypt/pages/user_details.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-//import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class NIDInfoFetcher extends StatefulWidget {
@@ -62,12 +59,25 @@ class _NIDInfoFetcherState extends State<NIDInfoFetcher> {
     });
   }
 
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        // Show message when trying to navigate back
+        final snackBar = SnackBar(
+          content: const Text('Please complete the registration process first.'),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {},
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        return false; // Prevent back navigation
+      },
+      child: Scaffold(
         appBar: AppBar(
-          //backgroundColor: Colors.lightBlue[100],
           elevation: 0,
+          automaticallyImplyLeading: false, // Remove the back button
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -105,14 +115,11 @@ class _NIDInfoFetcherState extends State<NIDInfoFetcher> {
               SizedBox(
                 width: 360,
                 height: 40,
-                //padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: ElevatedButton(
                   onPressed: _isLoading
                       ? null
                       : () async {
                           await getNIDInfo();
-                          // Add your onPressed code here!
-                          //final cameras = await availableCameras();
                         },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color(0xFFC2E7FF),
@@ -125,8 +132,8 @@ class _NIDInfoFetcherState extends State<NIDInfoFetcher> {
                   ),
                   child: _isLoading
                       ? const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors
-                              .white), // Set the color to match button text
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white), // Set the color to match button text
                         )
                       : const Text(
                           'Continue',
@@ -139,6 +146,7 @@ class _NIDInfoFetcherState extends State<NIDInfoFetcher> {
             ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
+}

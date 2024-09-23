@@ -68,7 +68,7 @@ class _PinInputPageState extends State<PinInputPage> {
       "country": country,
       "organizationUnit": "individual",
       "organization": "individual",
-      "subscriptionId": 1,
+      "subscriptionId": "",
       "digitalSignature": true,
       "nonRepudiation": true,
       "keyEncipherment": false,

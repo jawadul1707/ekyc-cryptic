@@ -27,8 +27,6 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
   final stateController = TextEditingController(text: "");
   final postalCodeController = TextEditingController(text: "");
   final countryController = TextEditingController(text: "Bangladesh");
-  //final organizationUnitController = TextEditingController(text: "individual");
-  //final organizationController = TextEditingController(text: "individual");
 
   bool _isButtonEnabled = false;
 
@@ -57,170 +55,178 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
     localityController.dispose();
     stateController.dispose();
     postalCodeController.dispose();
-    //countryController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+        // Show message when trying to navigate back
+        final snackBar = SnackBar(
+          content: const Text('Please complete the registration process first.'),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {},
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        return false; // Prevent back navigation
+      },
+      child: Scaffold(
         appBar: AppBar(
           title: const Text('User Details'),
+          automaticallyImplyLeading: false, // Removes the back button
         ),
         body: SingleChildScrollView(
-            child: Form(
-                key: _formKey,
-                child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(children: [
-                      TextFormField(
-                        readOnly: true,
-                        controller: phoneNoController,
-                        keyboardType: TextInputType.phone,
-                        decoration:
-                            const InputDecoration(labelText: 'Phone Number'),
-                      ),
-                      TextFormField(
-                        readOnly: true,
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(labelText: 'Email'),
-                      ),
-                      TextFormField(
-                        readOnly: true,
-                        controller: fathersNameController,
-                        decoration:
-                            const InputDecoration(labelText: 'Father\'s Name'),
-                      ),
-                      TextFormField(
-                        readOnly: true,
-                        controller: mothersNameController,
-                        decoration:
-                            const InputDecoration(labelText: 'Mother\'s Name'),
-                      ),
-                      TextFormField(
-                        readOnly: true,
-                        controller: dateOfBirthController,
-                        keyboardType: TextInputType.datetime,
-                        decoration: const InputDecoration(
-                            labelText: 'Date of Birth: (YYYY-MM-DD)'),
-                      ),
-                      TextFormField(
-                        readOnly: true,
-                        controller: commonNameController,
-                        decoration:
-                            const InputDecoration(labelText: 'Common Name'),
-                      ),
-                      TextFormField(
-                        readOnly: true,
-                        controller: serialNumberTypeController,
-                        decoration: const InputDecoration(
-                            labelText: 'Serial Number Type'),
-                      ),
-                      TextFormField(
-                        readOnly: true,
-                        controller: serialNumberValueController,
-                        decoration: const InputDecoration(
-                            labelText: 'Serial Number Value'),
-                      ),
-                      TextFormField(
-                          controller: houseIdentifierController,
-                          decoration: const InputDecoration(
-                              labelText: 'House Identifier'),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'This field is required';
-                            }
-                            return null;
-                          }),
-                      TextFormField(
-                        controller: streetAddressController,
-                        decoration:
-                            const InputDecoration(labelText: 'Street Address'),
-                        validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'This field is required';
-                            }
-                            return null;
-                          }),
-                      TextFormField(
-                        controller: localityController,
-                        decoration:
-                            const InputDecoration(labelText: 'Locality'),
-                        validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'This field is required';
-                            }
-                            return null;
-                          }
-                      ),
-                      TextFormField(
-                        controller: stateController,
-                        decoration: const InputDecoration(labelText: 'State'),
-                        validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'This field is required';
-                            }
-                            return null;
-                          }
-                      ),
-                      TextFormField(
-                        controller: postalCodeController,
-                        keyboardType: TextInputType.number,
-                        decoration:
-                            const InputDecoration(labelText: 'Postal Code'),
-                        validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'This field is required';
-                            }
-                            return null;
-                          }
-                      ),
-                      TextFormField(
-                        controller: countryController,
-                        decoration: const InputDecoration(labelText: 'Country'),
-                      ),
-                      /*TextFormField(
-                  controller: organizationUnitController,
-                  decoration: const InputDecoration(labelText: 'Organization Unit'),
-                ),
-                TextFormField(
-                  controller: organizationController,
-                  decoration: const InputDecoration(labelText: 'Organization'),
-                ), */
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        width: 360,
-                        height: 40,
-                        child: ElevatedButton(
-                          onPressed: _isButtonEnabled ? () {
-                            if (_formKey.currentState?.validate() ?? false) {
-                              houseIdentifier = houseIdentifierController.text;
-                              streetAddress = streetAddressController.text;
-                              locality = localityController.text;
-                              state = stateController.text;
-                              postalCode = postalCodeController.text;
-                              country = countryController.text;
+          child: Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  TextFormField(
+                    readOnly: true,
+                    controller: phoneNoController,
+                    keyboardType: TextInputType.phone,
+                    decoration: const InputDecoration(labelText: 'Phone Number'),
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(labelText: 'Email'),
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    controller: fathersNameController,
+                    decoration: const InputDecoration(labelText: 'Father\'s Name'),
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    controller: mothersNameController,
+                    decoration: const InputDecoration(labelText: 'Mother\'s Name'),
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    controller: dateOfBirthController,
+                    keyboardType: TextInputType.datetime,
+                    decoration: const InputDecoration(
+                        labelText: 'Date of Birth: (YYYY-MM-DD)'),
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    controller: commonNameController,
+                    decoration: const InputDecoration(labelText: 'Common Name'),
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    controller: serialNumberTypeController,
+                    decoration: const InputDecoration(
+                        labelText: 'Serial Number Type'),
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    controller: serialNumberValueController,
+                    decoration: const InputDecoration(
+                        labelText: 'Serial Number Value'),
+                  ),
+                  TextFormField(
+                    controller: houseIdentifierController,
+                    decoration: const InputDecoration(labelText: 'House Identifier'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This field is required';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: streetAddressController,
+                    decoration: const InputDecoration(labelText: 'Street Address'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This field is required';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: localityController,
+                    decoration: const InputDecoration(labelText: 'Locality'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This field is required';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: stateController,
+                    decoration: const InputDecoration(labelText: 'State'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This field is required';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: postalCodeController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(labelText: 'Postal Code'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This field is required';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: countryController,
+                    decoration: const InputDecoration(labelText: 'Country'),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: 360,
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: _isButtonEnabled
+                          ? () {
+                              if (_formKey.currentState?.validate() ?? false) {
+                                houseIdentifier = houseIdentifierController.text;
+                                streetAddress = streetAddressController.text;
+                                locality = localityController.text;
+                                state = stateController.text;
+                                postalCode = postalCodeController.text;
+                                country = countryController.text;
 
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const PinInputPage(),
-                                )); // Handle the button press
-                          }} : null,
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: const Color(0xFFC2E7FF),
-                            backgroundColor:
-                                const Color(0xFF005D99), // Text color
-                            textStyle: const TextStyle(fontSize: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
-                            ),
-                          ),
-                          child: const Text('Continue'),
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const PinInputPage(),
+                                  ),
+                                );
+                              }
+                            }
+                          : null,
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: const Color(0xFFC2E7FF),
+                        backgroundColor: const Color(0xFF005D99), // Text color
+                        textStyle: const TextStyle(fontSize: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10), // Rounded corners
                         ),
-                      )
-                    ])))));
+                      ),
+                      child: const Text('Continue'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

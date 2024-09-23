@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:crypt/pages/mobile_number.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  // Future<void> _launchUrl() async {
+  //   if (!await launchUrl(_url)) {
+  //     throw Exception('Could not launch $_url');
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false, body: _buildUI(context)
-    );
+    return Scaffold(resizeToAvoidBottomInset: false, body: _buildUI(context));
   }
 
   Widget _buildUI(BuildContext context) {
@@ -36,10 +42,37 @@ class HomePage extends StatelessWidget {
                     _filledButtonFull(context, const Text("Sign Up Now"),
                         const Color(0xFF005D99), const Color(0xFFC2E7FF)),
                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.02,
+                      height: MediaQuery.sizeOf(context).height * 0.01,
                     ),
-                    _filledButtonFull(context, const Text("Log In"),
-                        const Color(0xFFFFFFFF), const Color(0xFF005D99)),
+                    SizedBox(
+                      width: 360,
+                      height: 40,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          //_launchUrl;
+
+                          const link = "https://e-sign.com.bd/";
+                          launchUrl(Uri.parse(link),
+                              mode: LaunchMode.inAppWebView);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: const Color(0xFF005D99),
+                          backgroundColor:
+                              const Color(0xFFFFFFFF), // Text color
+                          textStyle: const TextStyle(fontSize: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(10), // Rounded corners
+                          ),
+                        ),
+                        child: const Text(
+                          'Log In',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

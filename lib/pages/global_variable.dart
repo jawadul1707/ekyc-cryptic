@@ -1,4 +1,4 @@
-String mobileNumber = '';
+String? mobileNumber;
 String email = '';
 String DOB = '';
 int? nidNumber;
@@ -18,4 +18,4 @@ String? postalCode;
 String? country;
 String? pin1;
 String? pin2;
-String uri = '192.168.68.78:9103';
+String uri = '103.41.111.51:9103';

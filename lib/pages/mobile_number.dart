@@ -12,7 +12,6 @@ class MobileNumberInputPage extends StatefulWidget {
 }
 
 class _MobileNumberInputPageState extends State<MobileNumberInputPage> {
-  
   final _phoneController = TextEditingController();
   bool _isButtonEnabled = false;
 
@@ -50,7 +49,9 @@ class _MobileNumberInputPageState extends State<MobileNumberInputPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: const Text('Enter Mobile Number'),
+        title: const Text('Sign Up with Crpyt', style: TextStyle(
+          fontWeight: FontWeight.bold, // Set the font weight to bold
+        ),),
       ),
       body: LayoutBuilder(builder: (context, constraints) {
         return SingleChildScrollView(
@@ -65,11 +66,25 @@ class _MobileNumberInputPageState extends State<MobileNumberInputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // Add the text "Enter your mobile number"
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Enter your mobile number',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                      height:
+                          4), // Add some space between the text and TextField
                   TextField(
                     controller: _phoneController,
                     keyboardType: TextInputType.phone,
                     decoration: const InputDecoration(
-                      labelText: 'Mobile Number',
+                      labelText: '01XXXXXXXXX',
                       border: OutlineInputBorder(),
                     ),
                     onChanged: _validatePhoneNumber,

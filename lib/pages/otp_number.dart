@@ -13,7 +13,6 @@ class OtpNumberInputPage extends StatefulWidget {
 }
 
 class _OtpNumberInputPageState extends State<OtpNumberInputPage> {
-  
   String _otpCode = '';
   bool _isButtonEnabled = false;
   int counter = 0;
@@ -81,7 +80,9 @@ class _OtpNumberInputPageState extends State<OtpNumberInputPage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Enter OTP'),
+          title: const Center(
+            child: Text('Verify OTP'),
+          ),
           automaticallyImplyLeading: false, // Removes the back button
         ),
         body: LayoutBuilder(builder: (context, constraints) {
@@ -97,10 +98,22 @@ class _OtpNumberInputPageState extends State<OtpNumberInputPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '     Enter the code sent to +88$mobileNumber',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
                     OtpTextField(
                       numberOfFields: 6,
                       borderColor: const Color(0xFF512DA8),
                       showFieldAsBox: true,
+                      keyboardType: TextInputType.number, 
                       onCodeChanged: (String code) {
                         _onOtpChanged(code);
                       },
@@ -114,13 +127,15 @@ class _OtpNumberInputPageState extends State<OtpNumberInputPage> {
                       child: ElevatedButton(
                         onPressed: _isButtonEnabled
                             ? () async {
-                                bool isVerificationSuccessful = await _verifyOTP();
+                                bool isVerificationSuccessful =
+                                    await _verifyOTP();
                                 if (isVerificationSuccessful) {
                                   // Navigate to the next page
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const EmailInputPage(),
+                                      builder: (context) =>
+                                          const EmailInputPage(),
                                     ),
                                   );
                                 } else {
@@ -129,9 +144,10 @@ class _OtpNumberInputPageState extends State<OtpNumberInputPage> {
                                   counter = 0;
                                   _otpCode = '';
                                   final snackBar = SnackBar(
-                                    content: const Text('OTP Verification Failed'),
+                                    content:
+                                        const Text('OTP Verification Failed'),
                                     action: SnackBarAction(
-                                      label: 'Undo',
+                                      label: 'OK',
                                       onPressed: () {
                                         // Code to undo the action
                                       },
