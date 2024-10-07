@@ -1,7 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:crypt/pages/home.dart';
-
-import 'dart:io';
 
  class MyHttpOverrides extends HttpOverrides{
   @override

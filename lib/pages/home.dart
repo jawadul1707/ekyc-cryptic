@@ -1,11 +1,7 @@
-//import 'package:crypt/pages/scan_qr_code.dart';
-import 'package:crypt/pages/qrcode_scan.dart';
 import 'package:flutter/material.dart';
-//import 'package:oauth2/oauth2.dart' as oauth2;
+
+import 'package:crypt/pages/qrcode_scan.dart';
 import 'package:crypt/pages/mnumber_input.dart';
-//import 'package:url_launcher/url_launcher.dart';
-//import 'dart:async';
-//import 'dart:io';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -64,14 +60,14 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () async {
                           Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const QRScannerPage()));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const QRScannerPage()));
                         },
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: const Color(0xFF005D99),
+                          foregroundColor: const Color(0xFFC2E7FF),
                           backgroundColor:
-                              const Color(0xFFFFFFFF), // Text color
+                              const Color(0xFF005D99), // Text color
                           textStyle: const TextStyle(fontSize: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius:
@@ -79,7 +75,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         child: const Text(
-                          'Scan QR Code',
+                          'Verify with QR code',
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -94,44 +90,6 @@ class HomePage extends StatelessWidget {
         },
       ),
     ));
-  }
-
-  Widget _welcomeCard() {
-    return Card(
-      color: const Color(0xFFC2E7FF),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20), // More rounded corners
-      ),
-      elevation: 10, // Elevation for shadow
-      child: Container(
-        width: 360,
-        height: 180,
-        padding: const EdgeInsets.all(16),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Welcome To',
-              style: TextStyle(
-                color: Color(0xFF005D99),
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'CRYPT',
-              style: TextStyle(
-                color: Color(0xFF005D99),
-                fontSize: 57,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   Widget _filledButtonFull(

@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:crypt/pages/global_variable.dart';
 import 'package:crypt/pages/qrcode_result.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_zxing/flutter_zxing.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert'; // For JSON decoding
+
 
 class QRScannerPage extends StatefulWidget {
   const QRScannerPage({super.key});

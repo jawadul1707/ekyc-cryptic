@@ -1,8 +1,8 @@
 import 'dart:convert';
-//import 'package:crypt/pages/endpage.dart';
+
 import 'package:crypt/pages/global_variable.dart';
-//import 'package:crypt/pages/home_page.dart';
 import 'package:crypt/pages/post_registration.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

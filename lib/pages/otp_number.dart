@@ -1,8 +1,10 @@
 import 'dart:convert';
+
+import 'package:crypt/pages/global_variable.dart';
 import 'package:crypt/pages/email_input.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:crypt/pages/global_variable.dart';
 import 'package:http/http.dart' as http;
 
 class OtpNumberInputPage extends StatefulWidget {

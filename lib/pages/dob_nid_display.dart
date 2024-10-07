@@ -1,6 +1,7 @@
 import 'package:crypt/pages/fv_instruction.dart';
 import 'package:crypt/pages/global_variable.dart';
 import 'package:crypt/pages/nidv_instruction.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,9 @@ class DobDisplayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
         // Show message when trying to navigate back
         final snackBar = SnackBar(
           content: const Text('Please complete the registration process first'),
@@ -20,7 +22,6 @@ class DobDisplayPage extends StatelessWidget {
           ),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        return false; // Prevent back navigation
       },
       child: Scaffold(
         appBar: AppBar(

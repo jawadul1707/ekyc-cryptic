@@ -1,7 +1,9 @@
 import 'dart:convert';
-import 'package:crypt/pages/global_variable.dart';
-import 'package:flutter/material.dart';
+
 import 'package:crypt/pages/otp_number.dart';
+import 'package:crypt/pages/global_variable.dart';
+
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class MobileNumberInputPage extends StatefulWidget {

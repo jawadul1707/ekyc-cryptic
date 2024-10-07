@@ -1,5 +1,6 @@
 import 'package:crypt/pages/global_variable.dart';
 import 'package:crypt/pages/pin_input.dart';
+
 import 'package:flutter/material.dart';
 
 class UserDetailsPage extends StatefulWidget {
