@@ -1,5 +1,5 @@
-import 'package:crypt/pages/dob_display_page.dart';
-import 'package:crypt/pages/selfie_taker.dart';
+import 'package:crypt/pages/dob_nid_display.dart';
+import 'package:crypt/pages/fv_caputre.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';

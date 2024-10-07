@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:crypt/pages/home_page.dart';
+import 'package:crypt/pages/home.dart';
 
 import 'dart:io';
 
@@ -12,7 +12,7 @@ import 'dart:io';
 }
 
 Future<void> main() async {
-  
+
   HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());

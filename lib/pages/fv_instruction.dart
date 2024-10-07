@@ -1,13 +1,13 @@
-import 'package:crypt/pages/camera_page.dart';
+import 'package:crypt/pages/fv_caputre.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
-class NidVerificationPage extends StatelessWidget {
+class FaceVerificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        // Display message when user tries to go back
+        // Show message when trying to navigate back
         final snackBar = SnackBar(
           content: const Text('Please complete the registration process first'),
           action: SnackBarAction(
@@ -16,7 +16,7 @@ class NidVerificationPage extends StatelessWidget {
           ),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        return false; // Prevents navigation
+        return false; // Prevent back navigation
       },
       child: Scaffold(
         appBar: AppBar(
@@ -33,7 +33,7 @@ class NidVerificationPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.add_card,
+                      Icons.face,
                       size: 100,
                       color: Colors.blue,
                     ),
@@ -47,11 +47,11 @@ class NidVerificationPage extends StatelessWidget {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'Position your NID Card in the camera frame. Follow the instructions on your screen.\n\n'
-                      '1. Find a well-lit area to focus your NID Card.\n\n'
-                      '2. Remove any obstacles between NID Card and Camera.\n\n'
-                      '3. Hold your device parallelly to the NID Card.\n\n'
-                      '4. Do not move your NID Card away from the outlined area.\n\n'
+                      'Position your face in the blue circle. Follow the instructions on your screen.\n\n'
+                      '1. Find a well-lit area to focus your face.\n\n'
+                      '2. Remove accessories like hats, eye glasses etc.\n\n'
+                      '3. Hold your device at eye level and keep your face centered on the circle.\n\n'
+                      '4. Do not move your face away from the outlined area.\n\n'
                       'The verification process will take less than a minute to complete.',
                       style: TextStyle(
                         fontSize: 16,
@@ -66,11 +66,12 @@ class NidVerificationPage extends StatelessWidget {
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () async {
+                    // Add your onPressed code here!
                     final cameras = await availableCameras();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CameraPage(cameras: cameras),
+                        builder: (context) => SelfiePage(cameras: cameras),
                       ),
                     );
                   },

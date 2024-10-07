@@ -43,7 +43,7 @@ class ThankYouPage extends StatelessWidget {
                 ),
                 SizedBox(height: 10), // Space between text
                 Text(
-                  'Please visit esign.com.bd from your PC/Laptop browser to login.',
+                  'Please visit e-sign.com.bd from your PC/Laptop browser to login.',
                   style: TextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),

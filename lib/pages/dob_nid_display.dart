@@ -1,6 +1,6 @@
-import 'package:crypt/pages/face_verification_instruction.dart';
+import 'package:crypt/pages/fv_instruction.dart';
 import 'package:crypt/pages/global_variable.dart';
-import 'package:crypt/pages/nid_verification_instruction.dart';
+import 'package:crypt/pages/nidv_instruction.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 

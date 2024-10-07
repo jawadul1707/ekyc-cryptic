@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:crypt/pages/nid_verification_instruction.dart';
+import 'package:crypt/pages/nidv_instruction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:crypt/pages/global_variable.dart';

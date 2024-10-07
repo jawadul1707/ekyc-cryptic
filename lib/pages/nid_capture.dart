@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:crypt/pages/global_variable.dart';
-import 'package:crypt/pages/dob_display_page.dart';
+import 'package:crypt/pages/dob_nid_display.dart';
 
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';

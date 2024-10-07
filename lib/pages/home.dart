@@ -1,8 +1,8 @@
 //import 'package:crypt/pages/scan_qr_code.dart';
-import 'package:crypt/pages/scan_qr_code.dart';
+import 'package:crypt/pages/qrcode_scan.dart';
 import 'package:flutter/material.dart';
 //import 'package:oauth2/oauth2.dart' as oauth2;
-import 'package:crypt/pages/mobile_number.dart';
+import 'package:crypt/pages/mnumber_input.dart';
 //import 'package:url_launcher/url_launcher.dart';
 //import 'dart:async';
 //import 'dart:io';

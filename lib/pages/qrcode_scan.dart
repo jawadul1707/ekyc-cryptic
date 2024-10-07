@@ -1,5 +1,5 @@
 import 'package:crypt/pages/global_variable.dart';
-import 'package:crypt/pages/scannedinformation.dart';
+import 'package:crypt/pages/qrcode_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zxing/flutter_zxing.dart';
 import 'package:http/http.dart' as http;
