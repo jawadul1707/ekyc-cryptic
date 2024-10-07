@@ -32,7 +32,7 @@ class _EmailInputPageState extends State<EmailInputPage> {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
         'POST',
-        Uri.parse('http://$uri/user-management-service/api/v1/email/otp/send'));
+        Uri.parse('$uri/user-management-service/api/v1/email/otp/send'));
     request.body = json.encode({"email": email});
     request.headers.addAll(headers);
 

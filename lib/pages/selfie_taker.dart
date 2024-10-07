@@ -79,7 +79,7 @@ class _SelfiePageState extends State<SelfiePage> {
       var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'http://$uri/user-management-service/api/v1/face/recognition'),
+            '$uri/user-management-service/api/v1/face/recognition'),
       );
 
       request.files.add(

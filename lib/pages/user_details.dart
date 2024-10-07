@@ -133,7 +133,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                   ),
                   TextFormField(
                     controller: houseIdentifierController,
-                    decoration: const InputDecoration(labelText: 'House Identifier'),
+                    decoration: const InputDecoration(labelText: 'House Identifier (Required)'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'This field is required';
@@ -143,7 +143,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                   ),
                   TextFormField(
                     controller: streetAddressController,
-                    decoration: const InputDecoration(labelText: 'Street Address'),
+                    decoration: const InputDecoration(labelText: 'Street Address (Required)'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'This field is required';
@@ -153,7 +153,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                   ),
                   TextFormField(
                     controller: localityController,
-                    decoration: const InputDecoration(labelText: 'Locality'),
+                    decoration: const InputDecoration(labelText: 'Locality (Required)'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'This field is required';
@@ -163,7 +163,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                   ),
                   TextFormField(
                     controller: stateController,
-                    decoration: const InputDecoration(labelText: 'State'),
+                    decoration: const InputDecoration(labelText: 'State (Required)'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'This field is required';
@@ -174,7 +174,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                   TextFormField(
                     controller: postalCodeController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: 'Postal Code'),
+                    decoration: const InputDecoration(labelText: 'Postal Code (Required)'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'This field is required';
@@ -184,7 +184,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                   ),
                   TextFormField(
                     controller: countryController,
-                    decoration: const InputDecoration(labelText: 'Country'),
+                    decoration: const InputDecoration(labelText: 'Country (Required)'),
                   ),
                   const SizedBox(height: 20),
                   SizedBox(

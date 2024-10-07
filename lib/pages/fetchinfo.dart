@@ -23,7 +23,7 @@ class _NIDInfoFetcherState extends State<NIDInfoFetcher> {
 
     var request = http.Request(
       'POST',
-      Uri.parse('http://$uri/user-management-service/api/v1/nid/fetch'),
+      Uri.parse('$uri/user-management-service/api/v1/nid/fetch'),
     );
     request.body = json.encode({
       "dob": DOB,

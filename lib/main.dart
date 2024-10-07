@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:crypt/pages/home_page.dart';
 
-Future<void> main() async {
+import 'dart:io';
 
+ class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
+
+Future<void> main() async {
+  
+  HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 

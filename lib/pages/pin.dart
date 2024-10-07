@@ -1,6 +1,8 @@
 import 'dart:convert';
+//import 'package:crypt/pages/endpage.dart';
 import 'package:crypt/pages/global_variable.dart';
-import 'package:crypt/pages/home_page.dart';
+//import 'package:crypt/pages/home_page.dart';
+import 'package:crypt/pages/thankyou.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -46,10 +48,8 @@ class _PinInputPageState extends State<PinInputPage> {
   Future<void> _createUser() async {
     //print("shaka laka boom boom");
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request(
-        'POST',
-        Uri.parse(
-            'http://$uri/user-management-service/api/v1/create-user'));
+    var request = http.Request('POST',
+        Uri.parse('$uri/user-management-service/api/v1/create/user'));
     request.body = json.encode({
       "phoneNo": mobileNumber,
       "email": email,
@@ -68,16 +68,6 @@ class _PinInputPageState extends State<PinInputPage> {
       "country": country,
       "organizationUnit": "individual",
       "organization": "individual",
-      "subscriptionId": "",
-      "digitalSignature": true,
-      "nonRepudiation": true,
-      "keyEncipherment": false,
-      "dataEncipherment": false,
-      "keyAgreement": false,
-      "keyCertSign": false,
-      "crlSign": false,
-      "encipherOnly": false,
-      "decipherOnly": false
     });
     request.headers.addAll(headers);
 
@@ -97,7 +87,7 @@ class _PinInputPageState extends State<PinInputPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: const Text('Enter Pin Number'),
+        title: const Text('Set Pin Number'),
       ),
       body: LayoutBuilder(builder: (context, constraints) {
         return SingleChildScrollView(
@@ -117,14 +107,14 @@ class _PinInputPageState extends State<PinInputPage> {
                     controller: _phoneController1,
                     keyboardType: TextInputType.phone,
                     decoration: const InputDecoration(
-                      labelText: 'Enter 4-digit Pin Number',
+                      labelText: 'Enter 6-digit Pin Number',
                       border: OutlineInputBorder(),
                     ),
                     onChanged: _storePinNumber1,
                   ),
                   const SizedBox(height: 20),
                   TextField(
-                    obscureText: true, 
+                    obscureText: true,
                     controller: _phoneController2,
                     keyboardType: TextInputType.phone,
                     decoration: const InputDecoration(
@@ -144,7 +134,7 @@ class _PinInputPageState extends State<PinInputPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const HomePage(),
+                                    builder: (context) => const EndPage(),
                                     //settings:
                                     //RouteSettings(arguments: mobileNumber),
                                   )); // Handle the button press

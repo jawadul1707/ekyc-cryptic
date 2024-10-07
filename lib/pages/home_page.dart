@@ -1,15 +1,14 @@
+//import 'package:crypt/pages/scan_qr_code.dart';
+import 'package:crypt/pages/scan_qr_code.dart';
 import 'package:flutter/material.dart';
+//import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:crypt/pages/mobile_number.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
+//import 'dart:async';
+//import 'dart:io';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  // Future<void> _launchUrl() async {
-  //   if (!await launchUrl(_url)) {
-  //     throw Exception('Could not launch $_url');
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +17,21 @@ class HomePage extends StatelessWidget {
 
   Widget _buildUI(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-        centerTitle: true,
+        // appBar: AppBar(
+        //   title: const Text('Home Page'),
+        //   centerTitle: true,
+        // ),
+        body: Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFFFFFFFF), Color(0xFF005D99)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
       ),
-      body: LayoutBuilder(
+      child: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
@@ -37,10 +46,15 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Spacer(),
-                    _welcomeCard(),
+                    AnimatedOpacity(
+                        opacity: 1.0,
+                        duration: const Duration(seconds: 2),
+                        child: _welcomeImage()
+                        //child: _welcomeCard(),
+                        ),
                     const Spacer(),
-                    _filledButtonFull(context, const Text("Sign Up Now"),
-                        const Color(0xFF005D99), const Color(0xFFC2E7FF)),
+                    _filledButtonFull(context, const Text("Sign up now"),
+                        const Color(0xFFC2E7FF), const Color(0xFF005D99)),
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height * 0.01,
                     ),
@@ -49,11 +63,10 @@ class HomePage extends StatelessWidget {
                       height: 40,
                       child: ElevatedButton(
                         onPressed: () async {
-                          //_launchUrl;
-
-                          const link = "https://e-sign.com.bd/";
-                          launchUrl(Uri.parse(link),
-                              mode: LaunchMode.inAppWebView);
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const QRScannerPage()));
                         },
                         style: ElevatedButton.styleFrom(
                           foregroundColor: const Color(0xFF005D99),
@@ -66,7 +79,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         child: const Text(
-                          'Log In',
+                          'Scan QR Code',
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -80,15 +93,16 @@ class HomePage extends StatelessWidget {
           );
         },
       ),
-    );
+    ));
   }
 
   Widget _welcomeCard() {
     return Card(
       color: const Color(0xFFC2E7FF),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(20), // More rounded corners
       ),
+      elevation: 10, // Elevation for shadow
       child: Container(
         width: 360,
         height: 180,
@@ -100,7 +114,8 @@ class HomePage extends StatelessWidget {
               'Welcome To',
               style: TextStyle(
                 color: Color(0xFF005D99),
-                fontSize: 14,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
               ),
             ),
             SizedBox(height: 10),
@@ -144,6 +159,17 @@ class HomePage extends StatelessWidget {
           ),
         ),
         child: text,
+      ),
+    );
+  }
+
+  Widget _welcomeImage() {
+    return SizedBox(
+      width: 400,
+      height: 400,
+      child: Image.asset(
+        'assets/dohatecesign.png', // Replace with your image path
+        fit: BoxFit.contain,
       ),
     );
   }

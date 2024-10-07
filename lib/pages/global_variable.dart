@@ -18,4 +18,5 @@ String? postalCode;
 String? country;
 String? pin1;
 String? pin2;
-String uri = '103.41.111.51:9103';
+String uri = 'https://103.41.111.51:9100';
+String uri2 = 'http://103.41.111.51:9103';

@@ -36,7 +36,7 @@ class _OtpEmailInputPageState extends State<OtpEmailInputPage> {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'http://$uri/user-management-service/api/v1/email/otp/verify'));
+            '$uri/user-management-service/api/v1/email/otp/verify'));
     request.body = json.encode({
       "email": email,
       "otp": _otpCode,
@@ -89,7 +89,7 @@ class _OtpEmailInputPageState extends State<OtpEmailInputPage> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '     Enter the code sent to +88$mobileNumber',
+                        '     Enter the code sent to \n     $email',
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,

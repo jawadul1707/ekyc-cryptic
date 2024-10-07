@@ -39,7 +39,7 @@ class _OtpNumberInputPageState extends State<OtpNumberInputPage> {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'http://$uri/user-management-service/api/v1/mobile/otp/verify'));
+            '$uri/user-management-service/api/v1/mobile/otp/verify'));
     request.body = json.encode({
       "mobileNumber": mobileNumber,
       "otp": _otpCode,

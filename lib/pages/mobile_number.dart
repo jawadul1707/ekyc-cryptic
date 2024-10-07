@@ -31,7 +31,7 @@ class _MobileNumberInputPageState extends State<MobileNumberInputPage> {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'http://$uri/user-management-service/api/v1/mobile/otp/send'));
+            '$uri/user-management-service/api/v1/mobile/otp/send'));
     request.body = json.encode({"mobileNumber": mobileNumber});
     request.headers.addAll(headers);
 
@@ -49,9 +49,12 @@ class _MobileNumberInputPageState extends State<MobileNumberInputPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: const Text('Sign Up with Crpyt', style: TextStyle(
-          fontWeight: FontWeight.bold, // Set the font weight to bold
-        ),),
+        title: const Text(
+          'Sign up with eSign',
+          style: TextStyle(
+            fontWeight: FontWeight.bold, // Set the font weight to bold
+          ),
+        ),
       ),
       body: LayoutBuilder(builder: (context, constraints) {
         return SingleChildScrollView(

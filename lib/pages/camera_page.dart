@@ -1,12 +1,14 @@
+import 'dart:io';
+import 'dart:convert';
+
 import 'package:crypt/pages/global_variable.dart';
 import 'package:crypt/pages/dob_display_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
-import 'dart:io';
 
 class CameraPage extends StatefulWidget {
 
@@ -67,7 +69,7 @@ class _CameraPageState extends State<CameraPage> {
       var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'http://$uri/user-management-service/api/v1/detect-text'),
+            '$uri/user-management-service/api/v1/detect-text'),
       );
       
       request.files.add(await http.MultipartFile.fromPath('image', imagePath));
@@ -106,34 +108,59 @@ class _CameraPageState extends State<CameraPage> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Take a Picture')),
-      body: Stack(
-        children: [
-          FutureBuilder<void>(
-            future: _initializeControllerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return imageLocation == null
-                    ? CameraPreview(_controller)
-                    : Image.file(File(imageLocation!));
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Stack(
+      children: [
+        FutureBuilder<void>(
+          future: _initializeControllerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return imageLocation == null
+                  ? CameraPreview(_controller)
+                  : Image.file(File(imageLocation!));
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+        if (_isLoading)
+          const Center(
+            child: CircularProgressIndicator(),
           ),
-          if (_isLoading)
-            const Center(
-              child: CircularProgressIndicator(),
+        
+        // Bottom blue bar
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: 140, // Height of the bottom bar
+            width: double.infinity,
+            color: const Color(0xFFC2E7FF), // Change the color to blue
+          ),
+        ),
+      ],
+    ),
+  floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 0.0), // Adjust height as needed
+        child: GestureDetector(
+          onTap: _takePictureAndUpload,
+          child: Container(
+            width: 100.0,  // Increased size of the button
+            height: 100.0, // Ensuring a circular shape
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle, // Makes the button circular
+              color: Color(0xFF005D99), // Background color
             ),
-        ],
+            child: const Icon(
+              Icons.camera,
+              size: 50, // Increased icon size
+              color: Color(0xFFC2E7FF), // Icon color
+            ),
+          ),
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _takePictureAndUpload,
-        child: const Icon(Icons.camera),
-      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat, // Keep the button centered
     );
   }
 }
